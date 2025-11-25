@@ -1,6 +1,7 @@
 import "../css/MovieCard.css";
 import type { Movie } from "../services/api";
 import { useMovieContext } from "../contexts/MovieContext";
+import type React from "react";
 
 export interface MovieCardProps {
   movie: Movie;
@@ -11,7 +12,9 @@ export default function MovieCard({ movie }: MovieCardProps) {
     useMovieContext();
   const favourite = isFavourite(movie.id);
 
-  function onFavouriteClick(e) {
+  function onFavouriteClick(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
     e.preventDefault();
     if (favourite) removeFromFavourites(movie.id);
     else addToFavourites(movie);
